@@ -1,0 +1,91 @@
+.LiveAcademy_StartPage_main {
+    margin-top: 5rem;
+}
+
+.LiveAcademy_main_description_container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* First description of the project */
+
+.LiveAcademy_description_1_content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0rem 5rem;
+}
+
+.LiveAcademy_description_1_text_holder {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 5rem;
+}
+.LiveAcademy_description_1_text_holder h1 {
+    color: var(--color-text);
+    font-family: var(--font-family);
+    font-size: 70px;
+    font-weight: 600;
+
+    margin: 0;
+}
+.LiveAcademy_description_1_text_holder p {
+    color: var(--color-secundary);
+    font-family: var(--font-family);
+    font-size: 18px;
+    font-weight: 300;
+}
+.LiveAcademy_description_1_image_holder img {
+    padding-top: 5rem;
+} 
+
+
+/* Second description of the project */
+
+.LiveAcademy_description_2_content {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    margin: 0rem 5rem;
+}
+.LiveAcademy_description_2_text_holder {
+    margin: 0 3rem 0rem 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.LiveAcademy_description_2_text_holder h1 {
+    font-size: 42px;
+    font-family: var(--font-family);
+
+    color: transparent;
+    background: linear-gradient(101deg, #0500FF 0%, #00D4FF 67.32%);
+    background-clip: text;
+}
+.LiveAcademy_description_2_image_holder img{
+    width:800px;
+}
+
+.LiveAcademy_mission_text {
+    margin: 4rem 5rem 2rem 5rem;
+    display:flex;
+    justify-content: center;
+}
+.LiveAcademy_mission_text p {
+    color: var(--color-accent);
+
+    font-size: 24px;
+    font-weight: 600;
+    font-style: normal; 
+    font-family: var(--font-family);
+
+
+    text-align: center;
+    margin: 0rem 10rem 0rem 10rem;
+}

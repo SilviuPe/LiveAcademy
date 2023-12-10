@@ -5,7 +5,7 @@
     --color-text: #fff;
     --color-accent: #00D4FF;
 
-    --font-family: 'Roboto';
+    --font-family: 'Roboto', sans-serif;
 }
 
 html, body {
