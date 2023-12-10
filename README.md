@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+# Live Academy
+>   _Live Academy it's a place for you to learn programming by joining the community, discuss your ideas, help other begginers and of course get help from those how are more advanced._
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Main Targets
 
-## Available Scripts
+* ### Learn Programming:
+    * You'll learn programming by watching tutorials on the academy, discuss with other programmers and **the main key it's to solve problems**.
 
-In the project directory, you can run:
+* ### Increase your Knowledge:
 
-### `npm start`
+    * As we know, there are **no limits when it comes to learn something new**. Even if you have advanced knowledge in this field, there will be advanced courses and problems that will help you increase your knowledge and become better. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* ### Meet New People with the same interests and hobbies:
+    * In this community we are based on learning from others and work in a team. You'll have the opportunity to make new friends to learn with, discuss ideas, create new collaboration for future projects and develope your skill to **communicate with new people**.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+* ### Learn from those who are more advanced:
+    * One of the best way to learn it's from those who are more advanced then you, from those that already made some mistakes and **they might prevent you to do same mistakes**.
 
-### `npm test`
+* ### Help others in their journey:
+    * Of course if you are more advanced then others, **you'll always be welcome to help them in which way you can**. Whatever it's a small tip or some guidence in their path to achieve their goals.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Tools Used
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* ### Frontend:
+    * **ReactJS**, a front-end JavaScript framework developed by Facebook. To build composable user interfaces predictably and efficiently using declarative code, we use React. It's an open-source and component-based framework responsible for creating the application's view layer.
+    * CSS & HTML
+    * **Custom assets** created by [Silviu](https://github.com/SilviuPe) 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* ### Backend: _Still in progress_
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Project State
+> [!NOTE]
+> **This project is still at the beginning and in continuous development. At the moment this is the frontend, soon I will start working on the backend as well, but not before I initiate the basics of the forntend. I want to have a big impact among those who are slowly learning this field, that's why I want to create this community that involves the idea of ​​learning through communication.**
