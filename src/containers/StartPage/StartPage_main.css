@@ -1,4 +1,4 @@
-.LiveAcademy_StartPage_main {
+.LiveAcademy_StartPage_main_container {
     margin-top: 5rem;
 }
 
@@ -31,7 +31,7 @@
     font-family: var(--font-family);
     font-size: 70px;
     font-weight: 600;
-
+    text-shadow: 6px 6px 6px #000;
     margin: 0;
 }
 .LiveAcademy_description_1_text_holder p {
@@ -39,6 +39,7 @@
     font-family: var(--font-family);
     font-size: 18px;
     font-weight: 300;
+    text-shadow: 2px 2px 2px #000;
 }
 .LiveAcademy_description_1_image_holder img {
     padding-top: 5rem;
@@ -63,7 +64,6 @@
 .LiveAcademy_description_2_text_holder h1 {
     font-size: 42px;
     font-family: var(--font-family);
-
     color: transparent;
     background: linear-gradient(101deg, #0500FF 0%, #00D4FF 67.32%);
     background-clip: text;

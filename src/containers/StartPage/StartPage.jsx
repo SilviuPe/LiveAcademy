@@ -3,11 +3,24 @@ import React from 'react';
 
 import './StartPage_header.css';
 import './StartPage_main.css';
+import './StartPage_footer.css';
 
 
 import logo from '../../assets/logo.png';
 import layers from '../../assets/tabs.png';
 import network from '../../assets/network.png';
+import mail from '../../assets/mail.png';
+import phone from '../../assets/telephone.png';
+
+
+const ContactField = ({icon,text}) => {
+    return (
+        <div className='LiveAcademy_contact_field'>
+            <img src = {icon}/>
+            <p>{text}</p>
+        </div>
+    )
+}
 
 const Header = () => { 
     return (
@@ -58,9 +71,21 @@ const StartPage = () => {
   return (
     <div className='LiveAcademy_StartPage_container'>
         <Header/>
-        <main className='LiveAcademy_StartPage_main'>
+        <main className='LiveAcademy_StartPage_main_container'>
             <Description/>
         </main>
+        <footer className='LiveAcademy_footer'>
+            <div className='LiveAcademy_message'>
+                <h2>Thank you for spending your valuable time on out project</h2>
+            </div>
+            <div className='LiveAcademy_contacts'>
+                <h1>Contact Info</h1>
+                <div className='LiveAcademy_contact_fields'>
+                    <ContactField icon = {mail} text = "liveacademy@gmail.com"/>
+                    <ContactField icon = {phone} text = "(+40) 743 927 416" />
+                </div>
+            </div>
+        </footer>
     </div>
   )
 }

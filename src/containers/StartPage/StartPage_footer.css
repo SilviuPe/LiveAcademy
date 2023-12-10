@@ -1,0 +1,51 @@
+.LiveAcademy_footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10rem 10rem 5rem 10rem;
+}
+
+.LiveAcademy_message {
+    display: flex;
+    flex:1;
+    justify-content: center;
+}
+.LiveAcademy_message h2 {
+    color: var(--color-text);
+    
+    font-family: var(--font-family);
+    font-size: 20px;
+    margin-left: 20rem;
+    margin-right: 5rem;
+}
+.LiveAcademy_contacts {
+    display: flex;
+    flex:1;
+    justify-content: start;
+}
+
+.LiveAcademy_contacts {
+    display: flex;
+    flex-direction: column;
+}
+
+.LiveAcademy_contacts h1 {
+    color: var(--color-text);
+    font-family: var(--font-family);
+    margin-top: 0;
+}
+
+.LiveAcademy_contact_field {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.LiveAcademy_contact_field img {
+    width: 10px;
+    height: 10px;
+}
+.LiveAcademy_contact_field p {
+    margin: 0 0 0 0.5rem;
+    color: rgba(255,255,255,0.5)
+}
+
