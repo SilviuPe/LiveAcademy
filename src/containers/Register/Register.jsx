@@ -25,6 +25,9 @@ const Register = () => {
                 <RegisterField icon = {mail} text = "Email" type = "email"/>
                 <RegisterField icon = {passwd} text = "Password" type = "password"/>
              </ul>
+             <button>Submit</button>
+
+             <p>Already have an account? <a href = "/login">Login</a></p>
         </div>
     </div>
   )
