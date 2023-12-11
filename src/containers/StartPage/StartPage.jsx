@@ -13,6 +13,9 @@ import mail from '../../assets/mail.png';
 import phone from '../../assets/telephone.png';
 
 
+import { Navigate } from 'react-router-dom';
+
+
 const ContactField = ({icon,text}) => {
     return (
         <div className='LiveAcademy_contact_field'>
@@ -29,7 +32,10 @@ const Header = () => {
                 <img src = {logo}/>
             </div>
             <div className='LiveAcademy_buttons'>
-                <button className='LiveAcademy_register_button'>Register</button>
+                <button className='LiveAcademy_register_button' onClick = {() => 
+                (
+                    window.location.href = '/register'
+                )}> Register</button>
                 <button className='LiveAcademy_login_button'>Login</button>
             </div>
         </header>
@@ -81,7 +87,7 @@ const StartPage = () => {
         </main>
         <footer className='LiveAcademy_footer'>
             <div className='LiveAcademy_message'>
-                <h2>Thank you for spending your valuable time on out project</h2>
+                <h2>Thank you for spending your valuable time on our project</h2>
             </div>
             <div className='LiveAcademy_contacts'>
                 <h1>Contact Info</h1>
