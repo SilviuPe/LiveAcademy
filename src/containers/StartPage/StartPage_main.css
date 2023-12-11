@@ -8,6 +8,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    transition: opacity 3s, transform 1s;
 }
 
 /* First description of the project */
@@ -34,6 +36,15 @@
     text-shadow: 6px 6px 6px #000;
     margin: 0;
 }
+.notshow {
+    opacity: 0;
+    transform: translateX(-50px);
+}
+.show {
+    opacity: 1;
+    transform: translateX(0px);
+}
+
 .LiveAcademy_description_1_text_holder p {
     color: var(--color-secundary);
     font-family: var(--font-family);

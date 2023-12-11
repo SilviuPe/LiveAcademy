@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 
 import './StartPage_header.css';
@@ -37,11 +37,16 @@ const Header = () => {
 }
 
 const Description = () => {
+    useEffect(() => {
+        const description = document.getElementsByClassName("LiveAcademy_main_description_container");
+        description[0].classList.replace('notshow','show');
+    },[]);
+
     return (
-        <div className='LiveAcademy_main_description_container'>
+        <div className='LiveAcademy_main_description_container notshow'>
             <div className='LiveAcademy_description_1_content'>
                 <div className='LiveAcademy_description_1_text_holder'>
-                    <h1>Welcome! Start your journey in coding on Live Academy</h1>
+                    <h1 >Welcome! Start your journey in coding on Live Academy</h1>
                     <p>Live Academy it's the place where you'll find people with the same interests as you</p>
                 </div>
                 <div className='LiveAcademy_description_1_image_holder'>
