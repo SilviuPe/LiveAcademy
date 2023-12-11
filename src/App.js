@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import { StartPage } from './containers';
+import { StartPage, Register } from './containers';
 
 const App = () => {
   return (
@@ -9,6 +9,7 @@ const App = () => {
         <BrowserRouter>
             <Routes>
                 <Route exact path = '/' element = {<StartPage/>} />
+                <Route path = '/register' element = {<Register/>} />
             </Routes>
         </BrowserRouter>
     </div>
