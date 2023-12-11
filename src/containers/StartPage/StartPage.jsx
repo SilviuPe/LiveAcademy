@@ -13,7 +13,7 @@ import mail from '../../assets/mail.png';
 import phone from '../../assets/telephone.png';
 
 
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 const ContactField = ({icon,text}) => {
@@ -25,18 +25,22 @@ const ContactField = ({icon,text}) => {
     )
 }
 
-const Header = () => { 
+const Header = () => {
+    const navigate = useNavigate();
+    const handleRegisterButton = () => {
+        navigate('/register');
+    }
+    const handleLoginButton = () => {
+        navigate('/login');
+    }
     return (
         <header className='LiveAcademy_header_content'>
             <div className='LiveAcademy_logo_holder'>
                 <img src = {logo}/>
             </div>
             <div className='LiveAcademy_buttons'>
-                <button className='LiveAcademy_register_button' onClick = {() => 
-                (
-                    window.location.href = '/register'
-                )}> Register</button>
-                <button className='LiveAcademy_login_button'>Login</button>
+                <button className='LiveAcademy_register_button' onClick = {handleRegisterButton}> Register</button>
+                <button className='LiveAcademy_login_button' onClick = {handleLoginButton}>Login</button>
             </div>
         </header>
     );
