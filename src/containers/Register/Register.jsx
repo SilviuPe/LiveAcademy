@@ -22,7 +22,7 @@ const Register = () => {
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
     username : '',
-    mail : '',
+    email : '',
     password : ''
   })
 
@@ -59,7 +59,7 @@ const Register = () => {
                 <RegisterField icon = {user} text = "Username" type = "text" callback = {(event) => {
                   setCredentials({
                     'username':event.target.value,
-                    'mail': credentials['mail'],
+                    'email': credentials['email'],
                     'password' : credentials['password']
                   })
                   console.log(credentials);
@@ -67,14 +67,14 @@ const Register = () => {
                 <RegisterField icon = {mail} text = "Email" type = "mail" callback = {(event) => {
                   setCredentials({
                     'username':credentials['username'],
-                    'mail': event.target.value,
+                    'email': event.target.value,
                     'password' : credentials['password']
                   })
                 }}/>
                 <RegisterField icon = {passwd} text = "Password" type = "password" callback = {(event) => {
                   setCredentials({
                     'username':credentials['username'],
-                    'mail': credentials['mail'],
+                    'email': credentials['email'],
                     'password' : event.target.value
                   })
                 }}/>
