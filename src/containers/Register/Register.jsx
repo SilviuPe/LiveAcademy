@@ -25,7 +25,8 @@ const Register = () => {
     email : '',
     password : ''
   })
-
+  const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleLoginButton = () => {
     navigate('/login');
@@ -35,6 +36,8 @@ const Register = () => {
   }
 
   const SendRegisterRequest = () => {
+    setError('');
+    setMessage('');
     let json_data = {
       method : 'POST',
       headers : {
@@ -44,11 +47,13 @@ const Register = () => {
     }
 
     fetch('http://localhost:3001/register', json_data)
-    .then(
-      response => {
-        console.log(response);
-      }
-    )
+    .then((response) => {
+      if(response.status === 201) setMessage('Your account has been created!')
+      return response.json();
+    })
+    .then((data) => {
+      setError(data.Error);
+    })
   }
 
   return (
@@ -62,7 +67,6 @@ const Register = () => {
                     'email': credentials['email'],
                     'password' : credentials['password']
                   })
-                  console.log(credentials);
                 }}/>
                 <RegisterField icon = {mail} text = "Email" type = "mail" callback = {(event) => {
                   setCredentials({
@@ -83,6 +87,8 @@ const Register = () => {
 
              <p onClick = {handleLoginButton}>Already have an account? <span>Login</span></p>
              <p onClick = {handleHomeButton}> Want to go back to home page?</p>
+             <p className='error'>{error}</p>
+             <p className='message'>{message}</p>
         </div>
     </div>
   )
