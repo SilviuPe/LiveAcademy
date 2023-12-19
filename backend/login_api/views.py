@@ -12,10 +12,15 @@ class register(APIView):
         def post(self,request):
             serializer = UserSerializer(data = dict(request.data))
             if serializer.is_valid():
-                user = serializer.save()
-                return Response(UserSerializer(user).data, status=status.HTTP_201_CREATED)
-            return Response("None")
-
+                if User.objects.filter(email = serializer.validated_data['email']).exists():
+                     return Response({ "Error" : "A user with that email already exists." },status=status.HTTP_400_BAD_REQUEST)
+                else:
+                    user = serializer.save()
+                    return Response(UserSerializer(user).data, status=status.HTTP_201_CREATED)
+            else:
+                    error = list(serializer.errors)[0] # Take the first key from errors
+                    error = serializer.errors[error][0] # Take the first error from errors list
+                    return Response({ "Error" : error },status=status.HTTP_400_BAD_REQUEST)
 
 class login(APIView):
     def post(self,request):
