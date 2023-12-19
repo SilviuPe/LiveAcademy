@@ -75,3 +75,18 @@
 
     text-decoration: none;
 }
+
+.LiveAcademy_register_content .error {
+    margin-top: 2rem;
+    color: red;
+    font-size: 18px;
+    text-shadow: 2px 1px 4px #000;
+    cursor: auto;
+}
+.LiveAcademy_register_content .message {
+    margin-top: 2rem;
+    color: green;
+    font-size: 18px;
+    text-shadow: 2px 1px 4px #000;
+    cursor: auto;
+}
