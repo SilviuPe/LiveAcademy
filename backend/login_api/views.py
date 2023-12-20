@@ -28,8 +28,8 @@ class login(APIView):
         if serializer.is_valid():
             username = serializer.validated_data['username']
             password = serializer.validated_data['password']
-            user = User.objects.filter(username=username,password=password)[0]
-            if user is not None:
+            user = User.objects.filter(username=username,password=password).exists()
+            if user:
                 login(request=request,user=user)
                 return Response({"Message":"Login succesfully"},status=status.HTTP_200_OK)
-        return Response({"Message":"Login failed"},status=status.HTTP_400_BAD_REQUEST)
+        return Response({"Error":"Login failed"},status=status.HTTP_400_BAD_REQUEST)
