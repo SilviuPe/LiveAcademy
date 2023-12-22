@@ -1,0 +1,97 @@
+.LiveAcademy_header {
+    display: flex;
+    flex-direction: column;
+}
+.LiveAcademy_header .visibileContent {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.LiveAcademy_header .logo {
+    width: 120px;
+    padding: 1rem 1rem 0rem 1rem;
+    margin-left: 1rem;
+}
+
+.LiveAcademy_header a {
+    margin-left: 3rem;
+    color: var(--color-text);
+    padding-bottom: 2rem;
+
+    font-size: 20px;
+    font-family: var(--font-family);
+
+    cursor: pointer;
+}
+
+.LiveAcademy_header .Menu {
+    display: flex;
+    align-items: start;
+    justify-content: end;
+    width: 100%;
+    margin-right: 3rem;
+
+}
+
+.Menu img {
+    cursor: pointer;
+}
+
+.LiveAcademy_header .LiveAcademy-menuContainer {
+    display: flex;
+    justify-content: end;
+}
+
+.LiveAcademy-menuContainer .Menu-Content {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+
+    margin-right: 2.75rem;
+
+    background-color: rgba(255,255,255,0.1);
+
+    padding: 1rem;
+
+    border-radius: 10px 0px 10px 10px;
+}
+
+.LiveAcademy_option {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    margin-bottom: 1rem;
+
+    cursor: pointer;
+}
+
+.LiveAcademy_option img {
+    width:18px;
+    height: 18px;
+}
+
+.LiveAcademy_option p {
+    color: var(--color-text);
+    margin: 0rem 0rem 0rem 0.3rem;
+
+    font-size: 16px;
+    font-family: var(--font-family);
+}
+
+.LiveAcademy-menuContainer .closed {
+    position:relative;
+    top: -100px;
+    visibility: hidden;
+    opacity: 0;
+    transition:  0.5s;
+}
+
+.LiveAcademy-menuContainer .open {
+    position: relative;
+    top: -2rem;
+    visibility: visible;
+    opacity: 1;
+    transition:  0.5s;
+}
