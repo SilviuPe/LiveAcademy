@@ -4,7 +4,7 @@
     --color-background: #060827;
     --color-text: #fff;
     --color-accent: #00D4FF;
-
+    --color-accent-low: rgba(0, 213, 255,0.3);;
     --font-family: 'Roboto', sans-serif;
 }
 
