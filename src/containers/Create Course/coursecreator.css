@@ -3,46 +3,57 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    font-size: 60px;
+    width: 100%;
 }
-
-#Add-New-Chapter, .LiveAcademy_course_chapter {
+#Add-New-Chapter {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+.LiveAcademy_course_chapter {
     background-color: var(--color-accent-low);
-    width: 10em;
-    height: 0.75em;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    opacity: 0.8;
 
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    border-radius: 0.2em;
-
-    margin-bottom: 1rem;
 }
-
+.LiveAcademy_course_chapter:hover {
+    opacity: 1;
+}
 .LiveAcademy_course_chapter h1 {
     color: var(--color-text);
-    
     font-size: 18px;
     font-family: var(--font-family);
-    font-weight: 400;
+    margin: 0rem 0.75rem 0rem 0.75rem;
+    padding: 1rem 0rem;
 }
-#Add-New-Chapter:hover {
-    opacity: 0.7;
+#new_chapter_input {
+    background-color: var(--color-accent-low);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
 }
-#Add-New-Chapter img {
-    width: 20px;
+#new_chapter_input input {
+    color: var(--color-text);
+    font-size: 18px;
+    font-family: var(--font-family);
+    margin: 1rem 5rem;
+
+    background: transparent;
+    border: none;
+    outline: none;
+
+    text-align: center;
+
     cursor: pointer;
 }
-#Add-New-Chapter input {
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid;
-    color: var(--color-text);
-    text-align: center;
-    font-size: 16px;
-    width: 12rem;
-
-    outline: none;
+#new_chapter_input img {
+    width: 23px;
+    margin: 1rem 0rem;
+    cursor: pointer;
 }
-
