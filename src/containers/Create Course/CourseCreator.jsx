@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './coursecreator.css';
 import './courseTitle.css';
-import { createChapter, openChapterInput } from './courseCreator.js';
 
 import { Header } from '../../components';
 
@@ -9,13 +8,33 @@ import add from '../../assets/add.png';
 import edit from '../../assets/edit.png';
 
 
-const NewChapter = ({title}) => {
+const NewChapter = ({title,callback, callback2}) => {
+    const [editChapter, setEditChapter] = useState(false);
     return (
         <div className='LiveAcademy_course_chapter'>
-            <h1>{title}</h1>
-            <div className='edit_img_holder'>
-                <img src = {edit}/>
-            </div>
+            {
+                editChapter
+                ? <>
+                    <input placeholder='Title of the chapter' onKeyDown={(event)=>{
+                        if(event.key == "Enter") {
+                            let value = event.target.value;
+                            if(value.length > 0) {
+                                setEditChapter(!editChapter)
+                                return callback(title,value);
+                            }
+                        }
+                    }}/>
+                </>
+                : <>
+                    <h1>{title}</h1>
+                    <div className='edit_img_holder'>
+                        <img src = {edit} onClick={() => {
+                            callback2();
+                            setEditChapter(!editChapter);
+                        }}/>
+                    </div>
+                </>
+            }
         </div>
     );
 }
@@ -60,6 +79,35 @@ const CourseCreator = () => {
             return newCourseStructure;
         })
     }
+
+    // Update an existing chapter 
+    function updateChapter(chapterTitle, updatedTitle) {
+        console.log(chapterTitle,updatedTitle);
+        setCourseStructure(() => {
+
+            let existing_chapters = Object.keys(courseStructure['Chapters']);
+            let new_existing_chapters = {}
+            existing_chapters.forEach((key) => {
+                if(key == chapterTitle) {
+                    new_existing_chapters[updatedTitle] = {
+                        lectures : {
+
+                        }
+                    }
+                }
+                else 
+                new_existing_chapters[key] = existing_chapters[key];
+            })
+            let newCourseStructure = {
+                ...courseStructure,
+                Chapters: {
+                    ...new_existing_chapters
+                }
+
+            }
+            return newCourseStructure;
+        });
+    }
     return (
     <div className='LiveAcademy_createCourse_container'>
         <Header/>
@@ -82,7 +130,7 @@ const CourseCreator = () => {
                 <div id='Add-New-Chapter'>
                     {
                         Object.keys(courseStructure['Chapters']).map(key => {
-                            return <NewChapter title = {key}/>
+                            return <NewChapter title = {key} callback = {updateChapter} callback2 = {() => {setChartTitleOpen(false);}}/>
                         })
                     }
                         <div id='new_chapter_input'>
