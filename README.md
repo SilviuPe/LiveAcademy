@@ -27,7 +27,11 @@
     * CSS & HTML
     * **Custom assets** created by [Silviu](https://github.com/SilviuPe) 
 
-* ### Backend: _Still in progress_
+* ### Backend: 
+    * **Django & Python**: Django is a high-level Python web framework that enables rapid development of secure and maintainable websites. It is free and open source, has a thriving and active community, great documentation, and many options for free and paid-for support.
+* ### UX/UI: 
+    * UX: [LucidApp](https://www.lucid.app/)
+    * UI: [Figma](https://www.figma.com/)
 
 ## Project State
 > [!NOTE]
