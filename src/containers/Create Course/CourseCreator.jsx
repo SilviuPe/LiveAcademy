@@ -5,6 +5,7 @@ import './courseTitle.css';
 import { Header, NewChapter } from '../../components';
 
 import add from '../../assets/add.png';
+import { NewLecture } from '../../components/Course Structure Components/CourseStructure';
 
 
 
@@ -96,15 +97,19 @@ const CourseCreator = () => {
                 ...courseStructure,
                 Chapters: {
                     ...existing_chapters,
-                    chapterTitle : {
+                    [chapterTitle] : {
                         lectures : {
                             ...lectures
                         }
                     }
                 }
             }
+            return newCourseStructure;
         })
+        console.log(JSON.stringify(courseStructure));
     }
+
+
     return (
     <div className='LiveAcademy_createCourse_container'>
         <Header/>
@@ -127,7 +132,19 @@ const CourseCreator = () => {
                 <div id='Add-New-Chapter'>
                     {
                         Object.keys(courseStructure['Chapters']).map(key => {
-                            return <NewChapter title = {key} callback = {updateChapter} callback2 = {() => {setChartTitleOpen(false);}}/>
+                            console.log(key);
+                            return (
+                                <>
+                                    <NewChapter
+                                    key = {key} 
+                                    title = {key} 
+                                    callback = {updateChapter} 
+                                    callback2 = {() => {setChartTitleOpen(false);}}
+                                    add_lecture_callback = {addNewLecture}
+                                    lectures = {courseStructure['Chapters'][key]['lectures']}    
+                                    />
+                                </>
+                            )
                         })
                     }
                         <div id='new_chapter_input'>
