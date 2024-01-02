@@ -4,7 +4,7 @@ import add from '../../assets/add.png';
 
 import { useState } from 'react';
 
-export const NewChapter = ({title,callback, callback2,add_lecture_callback,lectures}) => {
+export const NewChapter = ({title,callback, callback2,add_lecture_callback,lectures,updateLectureCallback}) => {
     const [editChapter, setEditChapter] = useState(false);
     const [lectureTitleOpen, setLectureTitleOpen] = useState(false);
 
@@ -40,7 +40,7 @@ export const NewChapter = ({title,callback, callback2,add_lecture_callback,lectu
             </div>
             {
                     Object.keys(lectures).map(lecture_key => {
-                        return <NewLecture title = {lecture_key}/>
+                        return <NewLecture chapter = {title} title = {lecture_key} callback = {updateLectureCallback}/>
                     })
             }
             <div id='new_lecture_input'>
@@ -68,7 +68,7 @@ export const NewChapter = ({title,callback, callback2,add_lecture_callback,lectu
 }
 
 
-export const NewLecture = ({title,callback}) => {
+export const NewLecture = ({chapter,title,callback}) => {
     const [editLecture, setEditLecture] = useState(false);
 
     return <div className='LiveAcademy_course_lecture'>
@@ -82,8 +82,9 @@ export const NewLecture = ({title,callback}) => {
                     if(event.key == "Enter") {
                         let value = event.target.value;
                         if(value.length > 0) {
+                            console.log(chapter,title,value)
                             setEditLecture(!editLecture);
-                            return callback(title,value);
+                            return callback(chapter,title,value);
                         }
                     }}}
                 />

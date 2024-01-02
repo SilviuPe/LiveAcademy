@@ -61,7 +61,6 @@ const CourseCreator = () => {
             let new_existing_chapters = {}
             
             let lectures = courseStructure['Chapters'][chapterTitle]['lectures'];
-            console.log("CHAPTERS:", courseStructure['Chapters']);
             existing_chapters.forEach((key) => {
                 if(key == chapterTitle) {
                     new_existing_chapters[updatedTitle] = {
@@ -74,7 +73,6 @@ const CourseCreator = () => {
                 new_existing_chapters[key] = courseStructure['Chapters'][key];
             })
             
-            console.log("NEW CHAPTERS:", new_existing_chapters);
             let newCourseStructure = {
                 ...courseStructure,
                 Chapters: {
@@ -111,6 +109,35 @@ const CourseCreator = () => {
         })
     }
 
+    // Update an existing lecture 
+    function updateSpecificLecture(chapterTitle,lectureTitle,updatedTitle) {
+        setCourseStructure(() => {
+            let existing_chapters = courseStructure['Chapters'];
+            let lectures = existing_chapters[chapterTitle]['lectures'];
+            let new_lectures = {}
+            console.log(lectureTitle);
+            Object.keys(lectures).forEach((key) => {
+                if (key == lectureTitle) 
+                    new_lectures[updatedTitle] = lectures[key];
+                else
+                    new_lectures[key] = lectures[key];
+            })
+            let newCourseStructure = {
+                ...courseStructure,
+                Chapters : {
+                    ...existing_chapters,
+                    [chapterTitle] : {
+                        lectures : {
+                            ...new_lectures
+                        }
+                    }
+                }
+            }
+            console.log(newCourseStructure);
+            return newCourseStructure;
+
+        })
+    }
 
     return (
     <div className='LiveAcademy_createCourse_container'>
@@ -136,17 +163,17 @@ const CourseCreator = () => {
             <div id='LiveAcademy_course_template'>
                 <div id='Add-New-Chapter'>
                     {
-                        
                         Object.keys(courseStructure['Chapters']).map(key => {
-                            console.log(courseStructure['Chapters'],key);
+                            console.log(courseStructure['Chapters'][key]['lectures'])
                             return (
                                 <>
                                     <NewChapter
                                         title = {key}
                                         callback = {updateChapter} 
-                                        callback2 = {() => {setChartTitleOpen(false);}}
+                                        callback2 = {() => {setChartTitleOpen(false)}}
                                         add_lecture_callback = {addNewLecture}
                                         lectures = {courseStructure['Chapters'][key]['lectures']}
+                                        updateLectureCallback={updateSpecificLecture}
                                         key = {key} 
                                     />
                                 </>
