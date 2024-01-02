@@ -35,4 +35,4 @@
 
 ## Project State
 > [!NOTE]
-> **This project is still at the beginning and in continuous development. At the moment this is the frontend, soon I will start working on the backend as well, but not before I initiate the basics of the forntend. I want to have a big impact among those who are slowly learning this field, that's why I want to create this community that involves the idea of ​​learning through communication.**
+> **This project is still at the beginning and in continuous development. At the moment this is the frontend, soon I will start working on the backend as well, but not before I initiate the basics of the frontend. I want to have a big impact among those who are slowly learning this field, that's why I want to create this community that involves the idea of ​​learning through communication.**
