@@ -7,20 +7,24 @@ import { useState } from 'react';
 export const NewChapter = ({title,callback, callback2,add_lecture_callback,lectures}) => {
     const [editChapter, setEditChapter] = useState(false);
     const [lectureTitleOpen, setLectureTitleOpen] = useState(false);
+
     return (
         <div className='LiveAcademy_course_chapter'>
             <div className='Chapter'>
                 {
                     editChapter
                     ? <>
-                        <input placeholder='Title of the chapter' onKeyDown={(event)=>{
-                            if(event.key == "Enter") {
-                                let value = event.target.value;
-                                if(value.length > 0) {
-                                    setEditChapter(!editChapter)
-                                    return callback(title,value);
+                        <input
+                            autoFocus = {true}
+                            placeholder='Title of the chapter' 
+                            onKeyDown={(event)=>{
+                                if(event.key == "Enter") {
+                                    let value = event.target.value;
+                                    if(value.length > 0) {
+                                        setEditChapter(!editChapter)
+                                        return callback(title,value);
+                                    }
                                 }
-                            }
                         }}/>
                     </>
                     : <>
@@ -42,13 +46,17 @@ export const NewChapter = ({title,callback, callback2,add_lecture_callback,lectu
             <div id='new_lecture_input'>
             {
                 lectureTitleOpen
-                ? <input onKeyDown = {(event) => {
+                ? <input 
+                    onKeyDown = {(event) => {
                         if( event.key === 'Enter' && event.target.value.length > 0)
                         {
                             setLectureTitleOpen(!lectureTitleOpen);
                             add_lecture_callback(event.target.value,title);
                         }
-                }}placeholder='Title of the lecture'></input>
+                        }}
+                    placeholder='Title of the lecture'
+                    autoFocus = {true}
+                />
                 : <img src = {add} onClick={() => {
                     setLectureTitleOpen(!lectureTitleOpen);
                 }}/>
@@ -67,15 +75,18 @@ export const NewLecture = ({title,callback}) => {
     {
         editLecture 
         ? <>
-            <input placeholder='Title of the lecture' onKeyDown={(event)=> {
-                if(event.key == "Enter") {
-                    let value = event.target.value;
-                    if(value.length > 0) {
-                        setEditLecture(!editLecture);
-                        return callback(title,value);
-                    }
-                }
-            }}/>
+            <input 
+                autoFocus = {true}
+                placeholder='Title of the lecture' 
+                onKeyDown={(event)=> {
+                    if(event.key == "Enter") {
+                        let value = event.target.value;
+                        if(value.length > 0) {
+                            setEditLecture(!editLecture);
+                            return callback(title,value);
+                        }
+                    }}}
+                />
         </>
         : <>
             <h1>{title}</h1>

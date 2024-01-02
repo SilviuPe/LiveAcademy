@@ -120,8 +120,11 @@ const CourseCreator = () => {
                 {
                     courseStructure.CourseTitle.length > 0
                     ? <h1 title = 'Edit Title' onClick = {()=> {updateCourseTitle('')}}>{courseStructure.CourseTitle}</h1>
-                    : <input id = "LiveAcademy_input_course_title" placeholder='Title of the course'
-                      onKeyDown={(event) => {
+                    : <input 
+                        autoFocus = {true}
+                        id = "LiveAcademy_input_course_title" 
+                        placeholder='Title of the course'
+                        onKeyDown={(event) => {
                         if(event.key === 'Enter') {
                             updateCourseTitle(event.target.value);
                         }
@@ -153,13 +156,16 @@ const CourseCreator = () => {
                         <div id='new_chapter_input'>
                         {
                             chartTitleOpen
-                            ? <input onKeyDown = {(event) => {
-                                return (
-                                    event.key === 'Enter' && event.target.value.length > 0
-                                    ? addNewChapter(event.target.value) 
-                                    : <></>
-                                )
-                            }}placeholder='Title of the chapter'></input>
+                            ? <input 
+                                autoFocus = {true}
+                                onKeyDown = {(event) => {
+                                    return (
+                                        event.key === 'Enter' && event.target.value.length > 0
+                                        ? addNewChapter(event.target.value) 
+                                        : <></>
+                                    )
+                                    }}
+                                placeholder='Title of the chapter'></input>
                             : <img src = {add} onClick={() => {
                                 if(courseStructure.CourseTitle.length > 0)
                                 setChartTitleOpen(!chartTitleOpen)
