@@ -5,7 +5,6 @@ import './courseTitle.css';
 import { Header, NewChapter } from '../../components';
 
 import add from '../../assets/add.png';
-import { NewLecture } from '../../components/Course Structure Components/CourseStructure';
 
 
 
@@ -56,22 +55,26 @@ const CourseCreator = () => {
 
     // Update an existing chapter 
     function updateChapter(chapterTitle, updatedTitle) {
-        console.log(chapterTitle,updatedTitle);
         setCourseStructure(() => {
 
             let existing_chapters = Object.keys(courseStructure['Chapters']);
             let new_existing_chapters = {}
+            
+            let lectures = courseStructure['Chapters'][chapterTitle]['lectures'];
+            console.log("CHAPTERS:", courseStructure['Chapters']);
             existing_chapters.forEach((key) => {
                 if(key == chapterTitle) {
                     new_existing_chapters[updatedTitle] = {
                         lectures : {
-
+                            ...lectures
                         }
                     }
                 }
-                else 
-                new_existing_chapters[key] = existing_chapters[key];
+                else
+                new_existing_chapters[key] = courseStructure['Chapters'][key];
             })
+            
+            console.log("NEW CHAPTERS:", new_existing_chapters);
             let newCourseStructure = {
                 ...courseStructure,
                 Chapters: {
@@ -106,7 +109,6 @@ const CourseCreator = () => {
             }
             return newCourseStructure;
         })
-        console.log(JSON.stringify(courseStructure));
     }
 
 
@@ -131,17 +133,18 @@ const CourseCreator = () => {
             <div id='LiveAcademy_course_template'>
                 <div id='Add-New-Chapter'>
                     {
+                        
                         Object.keys(courseStructure['Chapters']).map(key => {
-                            console.log(key);
+                            console.log(courseStructure['Chapters'],key);
                             return (
                                 <>
                                     <NewChapter
-                                    key = {key} 
-                                    title = {key} 
-                                    callback = {updateChapter} 
-                                    callback2 = {() => {setChartTitleOpen(false);}}
-                                    add_lecture_callback = {addNewLecture}
-                                    lectures = {courseStructure['Chapters'][key]['lectures']}    
+                                        title = {key}
+                                        callback = {updateChapter} 
+                                        callback2 = {() => {setChartTitleOpen(false);}}
+                                        add_lecture_callback = {addNewLecture}
+                                        lectures = {courseStructure['Chapters'][key]['lectures']}
+                                        key = {key} 
                                     />
                                 </>
                             )
