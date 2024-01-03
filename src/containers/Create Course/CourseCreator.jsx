@@ -6,6 +6,7 @@ import { Header, NewChapter } from '../../components';
 
 import add from '../../assets/add.png';
 
+import { errorsHandle } from './errorsHandling';
 
 
 
@@ -21,7 +22,10 @@ const CourseCreator = () => {
 
         }
     });
-
+    const [errors,setErrors] = useState({
+        title: false
+    });
+    const errorsOptions = errorsHandle(errors);
     // Update the title of the course
     function updateCourseTitle(title) {
         setCourseStructure(() => {
@@ -143,7 +147,7 @@ const CourseCreator = () => {
     <div className='LiveAcademy_createCourse_container'>
         <Header/>
         <main className='LiveAcademy_main_container'>
-            <div className='LiveAcademy_content-course_title'>
+            <div className={`LiveAcademy_content-course_title ${ errors.title[0] ? "close" : "" }`}>
                 {
                     courseStructure.CourseTitle.length > 0
                     ? <h1 title = 'Edit Title' onClick = {()=> {updateCourseTitle('')}}>{courseStructure.CourseTitle}</h1>
@@ -151,6 +155,10 @@ const CourseCreator = () => {
                         autoFocus = {true}
                         id = "LiveAcademy_input_course_title" 
                         placeholder='Title of the course'
+                        onFocus = {() => {
+                            setErrors(errorsOptions.titleError(false));
+                            console.log(errors.title)
+                        }}
                         onKeyDown={(event) => {
                         if(event.key === 'Enter') {
                             updateCourseTitle(event.target.value);
@@ -195,7 +203,9 @@ const CourseCreator = () => {
                                 placeholder='Title of the chapter'></input>
                             : <img src = {add} onClick={() => {
                                 if(courseStructure.CourseTitle.length > 0)
-                                setChartTitleOpen(!chartTitleOpen)
+                                    setChartTitleOpen(!chartTitleOpen)
+                                else 
+                                    setErrors(errorsOptions.titleError(true));
                             }}/>
 
                         }

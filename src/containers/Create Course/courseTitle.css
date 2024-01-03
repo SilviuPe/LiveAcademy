@@ -14,7 +14,9 @@
 
     outline: none;
 }
-
+.close input::placeholder, .close input {
+    color:rgb(167, 86, 86);    
+}
 .LiveAcademy_content-course_title h1 {
     color: var(--color-text);
 
