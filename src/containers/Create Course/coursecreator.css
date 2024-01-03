@@ -99,7 +99,7 @@
 
     margin-bottom: 0.2rem;
 }
-.LiveAcademy_course_lecture h1 {
+.LiveAcademy_course_lecture h1, .LiveAcademy_course_lecture input {
     font-family: var(--font-family);
     font-size: 14px;
 }
