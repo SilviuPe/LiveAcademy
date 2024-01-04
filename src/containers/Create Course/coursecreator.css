@@ -30,9 +30,10 @@
     width: 100%;
     margin-bottom: 0.3rem;
 }
-.LiveAcademy_course_chapter:hover {
+.LiveAcademy_course_chapter .Chapter:hover {
     opacity: 1;
 }
+
 .LiveAcademy_course_chapter h1 {
     color: var(--color-text);
     font-size: 18px;
@@ -46,12 +47,15 @@
     align-items: center;
     justify-content: center;
     border-radius: 15px;
+    opacity: 0.8;
+}
+#new_chapter_input:hover {
+    opacity: 1;
 }
 #new_chapter_input input, .LiveAcademy_course_chapter input {
     color: var(--color-text);
     font-size: 18px;
     font-family: var(--font-family);
-    margin: 1rem 5rem;
 
     background: transparent;
     border: none;
@@ -60,11 +64,16 @@
     text-align: center;
 
     cursor: pointer;
+
+    margin: 0rem 0.75rem 0rem 0.75rem;
+    padding: 0.75rem 0rem;
 }
 #new_chapter_input img {
     width: 23px;
-    margin: 1rem 0rem;
     cursor: pointer;
+
+    margin: 0rem 0.75rem 0rem 0.75rem;
+    padding: 0.75rem 0rem;
 }
 
 #new_lecture_input {
@@ -75,6 +84,9 @@
     align-items: center;
     justify-content: center;
     border-radius: 10px;
+}
+#new_lecture_input:hover {
+    background-color: rgba(107, 147, 184,0.7);
 }
 #new_lecture_input img{
     width: 16px;
@@ -98,6 +110,9 @@
     flex-direction: row;
 
     margin-bottom: 0.2rem;
+}
+.LiveAcademy_course_lecture:hover {
+    background-color: rgba(107, 147, 184,0.7);
 }
 .LiveAcademy_course_lecture h1, .LiveAcademy_course_lecture input {
     font-family: var(--font-family);
