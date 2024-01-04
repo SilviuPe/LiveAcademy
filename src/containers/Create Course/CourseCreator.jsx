@@ -143,6 +143,49 @@ const CourseCreator = () => {
         })
     }
 
+
+    // Delete lecture 
+    function deleteLecture(chapterTitle,lectureTitle) {
+        setCourseStructure(() => {
+            let existing_chapters = courseStructure['Chapters'];
+            let existing_lectures = existing_chapters[chapterTitle]['lectures'];
+            let new_lectures = {}
+            Object.keys(existing_lectures).forEach((key) => {
+                if (key != lectureTitle) new_lectures[key] = existing_lectures[key];
+            })
+            let newCourseStructure = {
+                ...courseStructure,
+                Chapters : {
+                    ...existing_chapters,
+                    [chapterTitle] : {
+                        lectures : {
+                            ...new_lectures
+                        }
+                    }
+                }
+            }
+            return newCourseStructure;
+        })
+        console.log(courseStructure);
+    }
+    // Delete chapter 
+    function deleteChapter(chapterTitle) {
+        setCourseStructure(() => {
+            let existing_chapters = courseStructure['Chapters'];
+            let newChapters = {}
+            Object.keys(existing_chapters).forEach((key) => {
+                if (key != chapterTitle) newChapters[key] = existing_chapters[key];
+            })
+            let newCourseStructure = {
+                ...courseStructure,
+                Chapters: {
+                    ...newChapters 
+                }
+            }
+            return newCourseStructure;
+        })
+    }
+
     return (
     <div className='LiveAcademy_createCourse_container'>
         <Header/>
@@ -150,8 +193,9 @@ const CourseCreator = () => {
             <div className={`LiveAcademy_content-course_title ${ errors.title[0] ? "close" : "" }`}>
                 {
                     courseStructure.CourseTitle.length > 0
-                    ? <h1 title = 'Edit Title' onClick = {()=> {updateCourseTitle('')}}>{courseStructure.CourseTitle}</h1>
-                    : <input 
+                    ?<h1 title = 'Edit Title' onClick = {()=> {updateCourseTitle('')}}>{courseStructure.CourseTitle}</h1>
+                    : <>
+                    <input 
                         autoFocus = {true}
                         id = "LiveAcademy_input_course_title" 
                         placeholder='Title of the course'
@@ -164,6 +208,9 @@ const CourseCreator = () => {
                             updateCourseTitle(event.target.value);
                         }
                       }}></input>
+                      <p className={`error ${ errors.title[0] ? "show" : "unshow" }`}>Course title required!</p>
+                    </> 
+                    
                 }
             </div>
      
@@ -181,7 +228,9 @@ const CourseCreator = () => {
                                         callback2 = {() => {setChartTitleOpen(false)}}
                                         add_lecture_callback = {addNewLecture}
                                         lectures = {courseStructure['Chapters'][key]['lectures']}
+                                        delete_callback = {deleteChapter}
                                         updateLectureCallback={updateSpecificLecture}
+                                        delete_lecture_callback={deleteLecture}
                                         key = {key} 
                                     />
                                 </>

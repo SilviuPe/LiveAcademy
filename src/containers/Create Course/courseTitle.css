@@ -2,6 +2,9 @@
     display: flex;
     justify-content: center;
     margin-bottom: 3rem;  
+
+    flex-direction: column;
+    align-items: center;
 }
 .LiveAcademy_content-course_title input {
     background: transparent;
@@ -15,7 +18,7 @@
     outline: none;
 }
 .close input::placeholder, .close input {
-    color:rgb(167, 86, 86);    
+    color:rgb(167, 86, 86);
 }
 .LiveAcademy_content-course_title h1 {
     color: var(--color-text);
@@ -26,4 +29,19 @@
     margin: 0;
 
     cursor: pointer;
+}
+
+.LiveAcademy_content-course_title .unshow {
+    visibility:hidden;
+    opacity: 0;
+}
+
+.LiveAcademy_content-course_title .show {
+    color:rgb(167, 86, 86);
+    text-align: center;
+    margin-top: 0.5rem;
+    visibility:visible;
+    opacity: 1;
+
+    transition: opacity 0.5s;
 }

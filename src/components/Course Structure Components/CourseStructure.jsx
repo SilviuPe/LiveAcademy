@@ -4,7 +4,7 @@ import add from '../../assets/add.png';
 
 import { useState } from 'react';
 
-export const NewChapter = ({title,callback, callback2,add_lecture_callback,lectures,updateLectureCallback}) => {
+export const NewChapter = ({title,callback, callback2, delete_callback,add_lecture_callback,lectures,updateLectureCallback, delete_lecture_callback}) => {
     const [editChapter, setEditChapter] = useState(false);
     const [lectureTitleOpen, setLectureTitleOpen] = useState(false);
 
@@ -24,6 +24,10 @@ export const NewChapter = ({title,callback, callback2,add_lecture_callback,lectu
                                         setEditChapter(!editChapter)
                                         return callback(title,value);
                                     }
+                                    else {
+                                        setEditChapter(!editChapter);
+                                        return delete_callback(title);
+                                    }
                                 }
                         }}/>
                     </>
@@ -40,7 +44,12 @@ export const NewChapter = ({title,callback, callback2,add_lecture_callback,lectu
             </div>
             {
                     Object.keys(lectures).map(lecture_key => {
-                        return <NewLecture chapter = {title} title = {lecture_key} callback = {updateLectureCallback}/>
+                        return <NewLecture
+                                chapter = {title}
+                                title = {lecture_key} 
+                                callback = {updateLectureCallback}
+                                delete_callback={delete_lecture_callback}    
+                            />
                     })
             }
             <div id='new_lecture_input'>
@@ -68,7 +77,7 @@ export const NewChapter = ({title,callback, callback2,add_lecture_callback,lectu
 }
 
 
-export const NewLecture = ({chapter,title,callback}) => {
+export const NewLecture = ({chapter,title,callback, delete_callback}) => {
     const [editLecture, setEditLecture] = useState(false);
 
     return <div className='LiveAcademy_course_lecture'>
@@ -86,6 +95,11 @@ export const NewLecture = ({chapter,title,callback}) => {
                             setEditLecture(!editLecture);
                             return callback(chapter,title,value);
                         }
+                        else {
+                            setEditLecture(!editLecture);
+                            return delete_callback(chapter,title);
+                        }
+                            
                     }}}
                 />
         </>
