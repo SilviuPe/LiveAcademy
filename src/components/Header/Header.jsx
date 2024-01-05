@@ -10,25 +10,25 @@ import save from '../../assets/save.png';
 import discard from '../../assets/discard.png';
 
 
-const Option = ({image,text}) => {
+const Option = ({image,text,save_callback}) => {
     return (
-        <div className='LiveAcademy_option'>
+        <div className='LiveAcademy_option' onClick = {save_callback}>
             <img src = {image}/>
             <p>{text}</p>
         </div>
     )
 }
 
-const MenuContent = ({menu_status}) => {
+const MenuContent = ({menu_status,save_callback}) => {
     return(
         <div className={`Menu-Content ${ menu_status ? 'open' : 'closed'}`}>
-            <Option image = {save} text = 'save'/>
+            <Option image = {save} text = 'save' save_callback = {save_callback}/>
             <Option image = {discard} text = 'discard'/>
             <Option image = {logout} text = 'logout'/>
         </div>  
     );
 }
-const Header = () => {
+const Header = ({save_callback}) => {
     const navigate = useNavigate();
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -44,7 +44,7 @@ const Header = () => {
             </div>
         </div>
         <div className='LiveAcademy-menuContainer'>
-            < MenuContent menu_status = {menuOpen}/>
+            < MenuContent menu_status = {menuOpen} save_callback = {save_callback}/>
         </div>
     </header>
     )
