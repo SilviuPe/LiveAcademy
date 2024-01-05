@@ -7,6 +7,7 @@ import { Header, NewChapter } from '../../components';
 import add from '../../assets/add.png';
 
 import { errorsHandle } from './errorsHandling';
+import { json } from 'react-router-dom';
 
 
 
@@ -18,6 +19,7 @@ const CourseCreator = () => {
     const [chartTitleOpen,setChartTitleOpen] = useState(false);
     const [courseStructure, setCourseStructure] = useState({
         CourseTitle : '',
+        Author : sessionStorage.getItem('username'),
         Chapters : {
 
         }
@@ -111,6 +113,7 @@ const CourseCreator = () => {
             }
             return newCourseStructure;
         })
+        console.log(JSON.stringify(courseStructure));
     }
 
     // Update an existing lecture 
@@ -185,10 +188,19 @@ const CourseCreator = () => {
             return newCourseStructure;
         })
     }
-
+    function sendCourseRequest() {
+        let json_data = {
+            method : 'POST',
+            headers : {
+              'Content-Type' : 'application/json',
+            },
+            body : JSON.stringify(courseStructure)
+          }
+        fetch('http://localhost:3001/course_request', json_data).then(response => console.log(response));
+    }
     return (
     <div className='LiveAcademy_createCourse_container'>
-        <Header/>
+        <Header save_callback = {sendCourseRequest}/>
         <main className='LiveAcademy_main_container'>
             <div className={`LiveAcademy_content-course_title ${ errors.title[0] ? "close" : "" }`}>
                 {
