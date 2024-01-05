@@ -40,10 +40,13 @@ const Login = () => {
 
     fetch('http://localhost:3001/login', json_data)
     .then((response) => {
-      if(response.status === 200) navigate('/');
+      if(response.status === 200) {
+        navigate('/');
+      }
       return response.json();
     })
     .then((data) => {
+      sessionStorage.setItem('username', data.username);
       setError(data.Error);
     })
   }
