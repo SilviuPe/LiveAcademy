@@ -39,11 +39,16 @@ class NewCourseRequest(APIView):
 
     def post(self,request):
         data = dict(request.data)
+        user = User.objects.filter(username = data['Author']).exists()
+        course = Course.objects.filter(author = user, id = data['CourseID'])
         status_code = status.HTTP_400_BAD_REQUEST
         filterMessage = self.filterCourse(data)
         if "Message" in filterMessage:
+            if len(course) > 0: 
+                course[0].delete()
             newCourse = self.createNewCourse(dict(request.data))
             newCourse.save()
+            filterMessage['CourseID'] = newCourse.id 
             self.createNewChapters(dict(request.data)['Chapters'],newCourse.id)
             status_code = status.HTTP_201_CREATED
         return Response(filterMessage, status= status_code)
