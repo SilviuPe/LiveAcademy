@@ -22,12 +22,14 @@ const CourseCreator = () => {
         Author : sessionStorage.getItem('username'),
         Chapters : {
 
-        }
+        },
+        CourseID : ''
     });
     const [errors,setErrors] = useState({
         title: false
     });
     const errorsOptions = errorsHandle(errors);
+
     // Update the title of the course
     function updateCourseTitle(title) {
         setCourseStructure(() => {
@@ -196,7 +198,17 @@ const CourseCreator = () => {
             },
             body : JSON.stringify(courseStructure)
           }
-        fetch('http://localhost:3001/course_request', json_data).then(response => console.log(response));
+        fetch('http://localhost:3001/course_request', json_data).then(response => {
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data,data.CourseID)
+            setCourseStructure({
+                ...courseStructure,
+                CourseID : data.CourseID
+            })
+        })
+        console.log(courseStructure);
     }
     return (
     <div className='LiveAcademy_createCourse_container'>
