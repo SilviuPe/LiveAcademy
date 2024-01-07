@@ -99,3 +99,34 @@ class test(APIView):
     def get(self,request):
         print(type(request.user.username),request.user.username)
         return Response('asdsad')
+
+
+
+class RequestCourse(APIView):
+    def get(self,request):
+        data = dict(request.data)
+        user = User.objects.filter(id = data['id'])
+        if user.exists():
+            course = Course.objects.filter(author = user[0])
+            if course.exists():
+                courseJSON = {
+                    'Chapters' : {
+
+                    }
+                }
+                courseJSON['CourseTitle'] = course[0].title
+                courseJSON['Author'] = course[0].author.username
+                chapters = Chapter.objects.filter(course=course[0])
+                for chapter in chapters:  
+                    courseJSON['Chapters'][chapter.title] = {
+                        "lectures" : {
+
+                        }
+                    }
+                    for lecture in Lecture.objects.filter(chapter=chapter):
+                        courseJSON['Chapters'][chapter.title]['lectures'][lecture.title] = {
+                            "lectureType" : '',
+                            "path" : ''
+                        }
+                print(courseJSON)
+        return Response("ASD")
