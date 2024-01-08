@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './Register.css';
 
@@ -20,6 +20,13 @@ const RegisterField = ({icon,text,type,callback}) => {
 const Register = () => {
 
   const navigate = useNavigate();
+
+  // Check if the user is logged in
+  useEffect(() => {
+    if (sessionStorage.getItem('username'))
+      navigate('/createCourse');
+  },[])
+
   const [credentials, setCredentials] = useState({
     username : '',
     email : '',

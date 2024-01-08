@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './Login.css';
 
@@ -15,7 +15,16 @@ const LoginField = ({icon,text,type,callback}) => {
     );
 }
 const Login = () => {
+
   const navigate = useNavigate();
+
+  // Check if the user is logged in
+  useEffect(() => {
+    if (sessionStorage.getItem('username'))
+      navigate('/createCourse');
+  },[])
+
+
   const handleRegisterButton = () => {
     navigate('/register');
   }
@@ -41,7 +50,7 @@ const Login = () => {
     fetch('http://localhost:3001/login', json_data)
     .then((response) => {
       if(response.status === 200) {
-        navigate('/');
+        window.location.href = '/createCourse';
       }
       return response.json();
     })
