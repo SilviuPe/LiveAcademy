@@ -29,7 +29,7 @@ const CourseCreator = () => {
         title: false
     });
     const errorsOptions = errorsHandle(errors);
-
+    if (!sessionStorage.getItem('username')) window.location.href = '/login'; 
     // Update the title of the course
     function updateCourseTitle(title) {
         setCourseStructure(() => {
