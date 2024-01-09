@@ -128,5 +128,6 @@ class RequestCourse(APIView):
                             "lectureType" : '',
                             "path" : ''
                         }
-                print(courseJSON)
-        return Response("ASD")
+                return Response({'CourseStructure' : str(courseJSON)}, status=status.HTTP_200_OK)
+            return Response({'Message' : 'User has no curses.'}, status=status.HTTP_204_NO_CONTENT)
+        return Response({'Error' : "There was an error with the server."})
