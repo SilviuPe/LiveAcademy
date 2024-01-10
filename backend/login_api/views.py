@@ -39,13 +39,14 @@ class NewCourseRequest(APIView):
 
     def post(self,request):
         data = dict(request.data)
-        user = User.objects.filter(username = data['Author']).exists()
-        course = Course.objects.filter(author = user, id = data['CourseID'])
+        print(data['CourseID'])
         status_code = status.HTTP_400_BAD_REQUEST
         filterMessage = self.filterCourse(data)
         if "Message" in filterMessage:
-            if len(course) > 0: 
-                course[0].delete()
+            if 'CourseID' in data:
+                course = Course.objects.filter(id = data['CourseID'])
+                if len(course) > 0: 
+                    course[0].delete()
             newCourse = self.createNewCourse(dict(request.data))
             newCourse.save()
             filterMessage['CourseID'] = newCourse.id 
@@ -104,8 +105,7 @@ class test(APIView):
 
 class RequestCourse(APIView):
     def get(self,request):
-        data = dict(request.data)
-        user = User.objects.filter(id = data['id'])
+        user = User.objects.filter(username = request.GET.get('username'))
         if user.exists():
             course = Course.objects.filter(author = user[0])
             if course.exists():
@@ -116,6 +116,7 @@ class RequestCourse(APIView):
                 }
                 courseJSON['CourseTitle'] = course[0].title
                 courseJSON['Author'] = course[0].author.username
+                courseJSON['CourseID'] = course[0].id
                 chapters = Chapter.objects.filter(course=course[0])
                 for chapter in chapters:  
                     courseJSON['Chapters'][chapter.title] = {
@@ -128,6 +129,6 @@ class RequestCourse(APIView):
                             "lectureType" : '',
                             "path" : ''
                         }
-                return Response({'CourseStructure' : str(courseJSON)}, status=status.HTTP_200_OK)
-            return Response({'Message' : 'User has no curses.'}, status=status.HTTP_204_NO_CONTENT)
-        return Response({'Error' : "There was an error with the server."})
+                return Response({'CourseStructure' : courseJSON}, status=status.HTTP_200_OK)
+            return Response({'Message' : 'User has no courses.'}, status=status.HTTP_204_NO_CONTENT)
+        return Response({'Error' : "There was an error with the server."}, status=status.HTTP_400_BAD_REQUEST)
