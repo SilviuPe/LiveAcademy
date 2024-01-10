@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './coursecreator.css';
 import './courseTitle.css';
 
@@ -198,7 +198,7 @@ const CourseCreator = () => {
             },
             body : JSON.stringify(courseStructure)
           }
-        fetch('http://localhost:3001/course_request', json_data).then(response => {
+        fetch('http://localhost:3001/create_course', json_data).then(response => {
             return response.json();
         })
         .then((data) => {
@@ -210,6 +210,22 @@ const CourseCreator = () => {
         })
         console.log(courseStructure);
     }
+    function requestCourse() {
+        let json_data = {
+            method : 'GET',
+            headers : {
+                'Content-Type' : 'application/json'
+            }
+        }
+        fetch(`http://localhost:3001/course_request?username=${sessionStorage.getItem('username')}`,json_data).then(response => {
+            return response.json()
+        })
+        .then((data) => {
+            console.log(data.CourseStructure)
+            setCourseStructure(data.CourseStructure)
+        })
+    }
+    useEffect(requestCourse,[])
     return (
     <div className='LiveAcademy_createCourse_container'>
         <Header save_callback = {sendCourseRequest}/>
