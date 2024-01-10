@@ -223,11 +223,11 @@ const CourseCreator = () => {
             return response.json()
         })
         .then((data) => {
-            console.log(data.CourseStructure)
-            setCourseStructure(data.CourseStructure)
+            if (data.CourseStructure) setCourseStructure(data.CourseStructure)
         })
     }
-    useEffect(requestCourse,[])
+    useEffect(requestCourse,[]);
+
     return (
     <div className='LiveAcademy_createCourse_container'>
         <Header save_callback = {sendCourseRequest}/>
@@ -246,7 +246,9 @@ const CourseCreator = () => {
                         }}
                         onKeyDown={(event) => {
                         if(event.key === 'Enter') {
-                            updateCourseTitle(event.target.value);
+                            if (event.target.value.length <= 0) 
+                                return setErrors(errorsOptions.titleError(true));
+                            return updateCourseTitle(event.target.value);
                         }
                         if (event.key === "Escape") {
                             updateCourseTitle(titleBefore);
