@@ -7,7 +7,6 @@ import { useState } from 'react';
 export const NewChapter = ({title,callback, callback2, delete_callback,add_lecture_callback,lectures,updateLectureCallback, delete_lecture_callback}) => {
     const [editChapter, setEditChapter] = useState(false);
     const [lectureTitleOpen, setLectureTitleOpen] = useState(false);
-
     return (
         <div className='LiveAcademy_course_chapter'>
             <div className='Chapter'>
@@ -18,6 +17,8 @@ export const NewChapter = ({title,callback, callback2, delete_callback,add_lectu
                             autoFocus = {true}
                             placeholder='Title of the chapter' 
                             onKeyDown={(event)=>{
+                                if (event.key === "Escape") 
+                                    setEditChapter(!editChapter);
                                 if(event.key == "Enter") {
                                     let value = event.target.value;
                                     if(value.length > 0) {
@@ -28,7 +29,7 @@ export const NewChapter = ({title,callback, callback2, delete_callback,add_lectu
                                         setEditChapter(!editChapter);
                                         return delete_callback(title);
                                     }
-                                }
+                                    }
                         }}/>
                     </>
                     : <>
@@ -43,7 +44,7 @@ export const NewChapter = ({title,callback, callback2, delete_callback,add_lectu
                 }
             </div>
             {
-                    Object.keys(lectures).map(lecture_key => {
+                    Object.keys(lectures).map((lecture_key) => {
                         return <NewLecture
                                 chapter = {title}
                                 title = {lecture_key} 
@@ -88,6 +89,8 @@ export const NewLecture = ({chapter,title,callback, delete_callback}) => {
                 autoFocus = {true}
                 placeholder='Title of the lecture' 
                 onKeyDown={(event)=> {
+                    if (event.key === "Escape") 
+                        setEditLecture(!editLecture)
                     if(event.key == "Enter") {
                         let value = event.target.value;
                         if(value.length > 0) {
