@@ -15,7 +15,7 @@ export const NewChapter = ({title,callback, callback2, delete_callback,add_lectu
                     ? <>
                         <input
                             autoFocus = {true}
-                            placeholder='Title of the chapter' 
+                            placeholder='Title of the chapter'
                             onKeyDown={(event)=>{
                                 if (event.key === "Escape") 
                                     setEditChapter(!editChapter);
@@ -63,6 +63,8 @@ export const NewChapter = ({title,callback, callback2, delete_callback,add_lectu
                             setLectureTitleOpen(!lectureTitleOpen);
                             add_lecture_callback(event.target.value,title);
                         }
+                        if(event.key === "Escape") 
+                            setLectureTitleOpen(!lectureTitleOpen);
                         }}
                     placeholder='Title of the lecture'
                     autoFocus = {true}

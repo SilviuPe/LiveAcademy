@@ -25,13 +25,14 @@ const CourseCreator = () => {
         },
         CourseID : ''
     });
+    const [titleBefore, setTitleBefore] = useState('');
     const [errors,setErrors] = useState({
         title: false
     });
     const errorsOptions = errorsHandle(errors);
     if (!sessionStorage.getItem('username')) window.location.href = '/login'; 
     // Update the title of the course
-    function updateCourseTitle(title) {
+    function updateCourseTitle(title,title_before = '') {
         setCourseStructure(() => {
             let newStructure = {
                 ...courseStructure,
@@ -39,6 +40,7 @@ const CourseCreator = () => {
             }
             return newStructure;
         })
+        setTitleBefore(title_before);
     }
 
     // Add new chapter 
@@ -233,7 +235,7 @@ const CourseCreator = () => {
             <div className={`LiveAcademy_content-course_title ${ errors.title[0] ? "close" : "" }`}>
                 {
                     courseStructure.CourseTitle.length > 0
-                    ?<h1 title = 'Edit Title' onClick = {()=> {updateCourseTitle('')}}>{courseStructure.CourseTitle}</h1>
+                    ?<h1 title = 'Edit Title' onClick = {()=> {updateCourseTitle('',courseStructure.CourseTitle)}}>{courseStructure.CourseTitle}</h1>
                     : <>
                     <input 
                         autoFocus = {true}
@@ -241,11 +243,13 @@ const CourseCreator = () => {
                         placeholder='Title of the course'
                         onFocus = {() => {
                             setErrors(errorsOptions.titleError(false));
-                            console.log(errors.title)
                         }}
                         onKeyDown={(event) => {
                         if(event.key === 'Enter') {
                             updateCourseTitle(event.target.value);
+                        }
+                        if (event.key === "Escape") {
+                            updateCourseTitle(titleBefore);
                         }
                       }}></input>
                       <p className={`error ${ errors.title[0] ? "show" : "unshow" }`}>Course title required!</p>
@@ -283,11 +287,10 @@ const CourseCreator = () => {
                             ? <input 
                                 autoFocus = {true}
                                 onKeyDown = {(event) => {
-                                    return (
-                                        event.key === 'Enter' && event.target.value.length > 0
-                                        ? addNewChapter(event.target.value) 
-                                        : <></>
-                                    )
+                                    if (event.key === 'Enter' && event.target.value.length > 0)
+                                        return  addNewChapter(event.target.value) 
+                                    if (event.key === 'Escape') 
+                                        return setChartTitleOpen(!chartTitleOpen);
                                     }}
                                 placeholder='Title of the chapter'></input>
                             : <img src = {add} onClick={() => {
