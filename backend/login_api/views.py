@@ -127,8 +127,9 @@ class RequestCourse(APIView):
                     for lecture in Lecture.objects.filter(chapter=chapter):
                         courseJSON['Chapters'][chapter.title]['lectures'][lecture.title] = {
                             "lectureType" : '',
-                            "path" : ''
+                            "path" : '',
+                            "id" : lecture.id
                         }
                 return Response({'CourseStructure' : courseJSON}, status=status.HTTP_200_OK)
-            return Response({'Message' : 'User has no courses.'}, status=status.HTTP_204_NO_CONTENT)
+            return Response({'Message' : 'User has no courses.'}, status=status.HTTP_200_OK)
         return Response({'Error' : "There was an error with the server."}, status=status.HTTP_400_BAD_REQUEST)
