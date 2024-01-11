@@ -220,10 +220,10 @@ const CourseCreator = () => {
             }
         }
         fetch(`http://localhost:3001/course_request?username=${sessionStorage.getItem('username')}`,json_data).then(response => {
-            return response.json()
+            return response.json();
         })
-        .then((data) => {
-            if (data.CourseStructure) setCourseStructure(data.CourseStructure)
+        .then((data) => { 
+            if (data.CourseStructure) setCourseStructure(data.CourseStructure);
         })
     }
     useEffect(requestCourse,[]);
@@ -265,7 +265,6 @@ const CourseCreator = () => {
                 <div id='Add-New-Chapter'>
                     {
                         Object.keys(courseStructure['Chapters']).map(key => {
-                            console.log(courseStructure['Chapters'][key]['lectures'])
                             return (
                                 <>
                                     <NewChapter
