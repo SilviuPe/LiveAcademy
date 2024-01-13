@@ -39,7 +39,6 @@ class NewCourseRequest(APIView):
 
     def post(self,request):
         data = dict(request.data)
-        print(data['CourseID'])
         status_code = status.HTTP_400_BAD_REQUEST
         filterMessage = self.filterCourse(data)
         if "Message" in filterMessage:
@@ -49,9 +48,9 @@ class NewCourseRequest(APIView):
                     course[0].delete()
             newCourse = self.createNewCourse(dict(request.data))
             newCourse.save()
-            filterMessage['CourseID'] = newCourse.id 
             self.createNewChapters(dict(request.data)['Chapters'],newCourse.id)
             status_code = status.HTTP_201_CREATED
+            filterMessage['CourseID'] = newCourse.id 
         return Response(filterMessage, status= status_code)
         
 
@@ -130,6 +129,14 @@ class RequestCourse(APIView):
                             "path" : '',
                             "id" : lecture.id
                         }
+                print(courseJSON)
                 return Response({'CourseStructure' : courseJSON}, status=status.HTTP_200_OK)
             return Response({'Message' : 'User has no courses.'}, status=status.HTTP_200_OK)
         return Response({'Error' : "There was an error with the server."}, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class RequestLecture(APIView):
+    def get(self,request):
+        lecture = Lecture.objects.filter(id = request.GET.get('id'))
+        print(lecture[0].get_seria)
+        return Response('lecture[0]')
