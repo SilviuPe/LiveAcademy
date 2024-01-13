@@ -117,7 +117,6 @@ const CourseCreator = () => {
             }
             return newCourseStructure;
         })
-        console.log(JSON.stringify(courseStructure));
     }
 
     // Update an existing lecture 
@@ -126,7 +125,6 @@ const CourseCreator = () => {
             let existing_chapters = courseStructure['Chapters'];
             let lectures = existing_chapters[chapterTitle]['lectures'];
             let new_lectures = {}
-            console.log(lectureTitle);
             Object.keys(lectures).forEach((key) => {
                 if (key == lectureTitle) 
                     new_lectures[updatedTitle] = lectures[key];
@@ -144,7 +142,6 @@ const CourseCreator = () => {
                     }
                 }
             }
-            console.log(newCourseStructure);
             return newCourseStructure;
 
         })
@@ -173,7 +170,6 @@ const CourseCreator = () => {
             }
             return newCourseStructure;
         })
-        console.log(courseStructure);
     }
     // Delete chapter 
     function deleteChapter(chapterTitle) {
@@ -192,26 +188,7 @@ const CourseCreator = () => {
             return newCourseStructure;
         })
     }
-    function sendCourseRequest() {
-        let json_data = {
-            method : 'POST',
-            headers : {
-              'Content-Type' : 'application/json',
-            },
-            body : JSON.stringify(courseStructure)
-          }
-        fetch('http://localhost:3001/create_course', json_data).then(response => {
-            return response.json();
-        })
-        .then((data) => {
-            console.log(data,data.CourseID)
-            setCourseStructure({
-                ...courseStructure,
-                CourseID : data.CourseID
-            })
-        })
-        console.log(courseStructure);
-    }
+
     function requestCourse() {
         let json_data = {
             method : 'GET',
@@ -223,11 +200,39 @@ const CourseCreator = () => {
             return response.json();
         })
         .then((data) => { 
-            if (data.CourseStructure) setCourseStructure(data.CourseStructure);
+            if (data.CourseStructure) 
+            {
+                console.log(data.CourseStructure);
+                return setCourseStructure(data.CourseStructure);
+            }
         })
     }
-    useEffect(requestCourse,[]);
 
+    function sendCourseRequest() {
+        let json_data = {
+            method : 'POST',
+            headers : {
+              'Content-Type' : 'application/json',
+            },
+            body : JSON.stringify(courseStructure)
+        }
+        fetch('http://localhost:3001/create_course', json_data).then(response => {
+            if (response.status === 201) {
+                console.log("SAVED")
+                return response.json()
+            }
+        })
+        .then(data => {
+            setCourseStructure({
+                ...courseStructure,
+                CourseID : data.CourseID
+            })
+            requestCourse();
+        })
+    }
+
+
+    useEffect(requestCourse,[]);
     return (
     <div className='LiveAcademy_createCourse_container'>
         <Header save_callback = {sendCourseRequest}/>
