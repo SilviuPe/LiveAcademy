@@ -7,6 +7,7 @@ import { Header, NewChapter } from '../../components';
 import add from '../../assets/add.png';
 
 import { errorsHandle } from './errorsHandling';
+import { course_structure_funcs } from './functionsHandling';
 import { json } from 'react-router-dom';
 
 
@@ -29,8 +30,13 @@ const CourseCreator = () => {
     const [errors,setErrors] = useState({
         title: false
     });
+
+
     const errorsOptions = errorsHandle(errors);
+    const structureFunctions = course_structure_funcs(courseStructure);
     if (!sessionStorage.getItem('username')) window.location.href = '/login'; 
+    
+    
     // Update the title of the course
     function updateCourseTitle(title,title_before = '') {
         setCourseStructure(() => {
@@ -231,11 +237,23 @@ const CourseCreator = () => {
         })
     }
 
+    function deleteCourseRequest() {
+        fetch(`http://localhost:3001/deleteCourse?CourseID=${courseStructure.CourseID}`)
+        .then(response => {
+            if(response.ok) {
+                console.log("Course Succesfully Deleted!")
+                return setCourseStructure(structureFunctions.setTheCourseStructureDefault());
+            }
+        })
+    }
 
     useEffect(requestCourse,[]);
     return (
     <div className='LiveAcademy_createCourse_container'>
-        <Header save_callback = {sendCourseRequest}/>
+        <Header 
+            save_callback = {sendCourseRequest}
+            delete_callback = {deleteCourseRequest}
+        />
         <main className='LiveAcademy_main_container'>
             <div className={`LiveAcademy_content-course_title ${ errors.title[0] ? "close" : "" }`}>
                 {
