@@ -140,3 +140,13 @@ class RequestLecture(APIView):
         lecture = Lecture.objects.filter(id = request.GET.get('id'))
         print(lecture[0].get_seria)
         return Response('lecture[0]')
+    
+
+
+class DeleteCourse(APIView):
+    def get(self,request):
+        course_id = request.GET.get('CourseID')
+        course = Course.objects.filter(id = course_id)
+        if course.exists():
+            course[0].delete()
+        return Response("Course Succesfully Deleted", status=status.HTTP_200_OK)
