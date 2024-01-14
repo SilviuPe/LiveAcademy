@@ -10,25 +10,28 @@ import save from '../../assets/save.png';
 import discard from '../../assets/discard.png';
 
 
-const Option = ({image,text,save_callback}) => {
+const Option = ({image,text,callback}) => {
     return (
-        <div className='LiveAcademy_option' onClick = {save_callback}>
+        <div className='LiveAcademy_option' onClick = {callback}>
             <img src = {image}/>
             <p>{text}</p>
         </div>
     )
 }
 
-const MenuContent = ({menu_status,save_callback}) => {
+const MenuContent = ({menu_status,save_callback, delete_callback}) => {
     return(
         <div className={`Menu-Content ${ menu_status ? 'open' : 'closed'}`}>
-            <Option image = {save} text = 'save' save_callback = {save_callback}/>
-            <Option image = {discard} text = 'discard'/>
-            <Option image = {logout} text = 'logout'/>
+            <Option image = {save} text = 'save' callback = {save_callback}/>
+            <Option image = {discard} text = 'delete' callback = {delete_callback}/>
+            <Option image = {logout} text = 'logout' callback = {() => {
+                sessionStorage.removeItem('username');
+                window.location.href = '/login';
+            }}/>
         </div>  
     );
 }
-const Header = ({save_callback}) => {
+const Header = ({save_callback, delete_callback}) => {
     const navigate = useNavigate();
     const [menuOpen, setMenuOpen] = useState(false);
 
@@ -44,7 +47,10 @@ const Header = ({save_callback}) => {
             </div>
         </div>
         <div className='LiveAcademy-menuContainer'>
-            < MenuContent menu_status = {menuOpen} save_callback = {save_callback}/>
+            < MenuContent 
+                menu_status = {menuOpen} 
+                save_callback = {save_callback}
+                delete_callback={delete_callback}/>
         </div>
     </header>
     )
