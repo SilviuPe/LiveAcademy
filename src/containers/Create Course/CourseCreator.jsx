@@ -17,6 +17,7 @@ import { json } from 'react-router-dom';
 
 
 const CourseCreator = () => {
+    const [titleSaved, setTitleSaved] = useState(true);
     const [chartTitleOpen,setChartTitleOpen] = useState(false);
     const [courseStructure, setCourseStructure] = useState({
         CourseTitle : '',
@@ -61,7 +62,8 @@ const CourseCreator = () => {
                     [title]: {
                         lectures : {
 
-                        }
+                        },
+                        id : undefined
                     }
                 }
             }
@@ -108,7 +110,8 @@ const CourseCreator = () => {
             let lectures = existing_chapters[chapterTitle]['lectures'];
             lectures[lectureTitle] = {
                 lectureType : '',
-                path : ''
+                path : '',
+                id : undefined
             }
             let newCourseStructure = {
                 ...courseStructure,
@@ -131,9 +134,12 @@ const CourseCreator = () => {
             let existing_chapters = courseStructure['Chapters'];
             let lectures = existing_chapters[chapterTitle]['lectures'];
             let new_lectures = {}
+            console.log(existing_chapters)
             Object.keys(lectures).forEach((key) => {
-                if (key == lectureTitle) 
+                if (key == lectureTitle) {
                     new_lectures[updatedTitle] = lectures[key];
+                    new_lectures[updatedTitle].id = undefined;
+                }
                 else
                     new_lectures[key] = lectures[key];
             })
@@ -144,10 +150,12 @@ const CourseCreator = () => {
                     [chapterTitle] : {
                         lectures : {
                             ...new_lectures
-                        }
+                        },
+                        id : courseStructure['Chapters'][chapterTitle].id
                     }
                 }
             }
+            console.log(newCourseStructure)
             return newCourseStructure;
 
         })
@@ -234,6 +242,7 @@ const CourseCreator = () => {
                 CourseID : data.CourseID
             })
             requestCourse();
+            setTitleSaved(true);
         })
     }
 
@@ -258,7 +267,7 @@ const CourseCreator = () => {
             <div className={`LiveAcademy_content-course_title ${ errors.title[0] ? "close" : "" }`}>
                 {
                     courseStructure.CourseTitle.length > 0
-                    ?<h1 title = 'Edit Title' onClick = {()=> {updateCourseTitle('',courseStructure.CourseTitle)}}>{courseStructure.CourseTitle}</h1>
+                    ?<h1 className = {`${titleSaved ? '' : 'unsaved'}`} title = 'Edit Title' onClick = {()=> {updateCourseTitle('',courseStructure.CourseTitle)}}>{courseStructure.CourseTitle}</h1>
                     : <>
                     <input 
                         autoFocus = {true}
@@ -271,7 +280,9 @@ const CourseCreator = () => {
                         if(event.key === 'Enter') {
                             if (event.target.value.length <= 0) 
                                 return setErrors(errorsOptions.titleError(true));
+                            setTitleSaved(false);
                             return updateCourseTitle(event.target.value);
+                            
                         }
                         if (event.key === "Escape") {
                             updateCourseTitle(titleBefore);
@@ -292,6 +303,7 @@ const CourseCreator = () => {
                                 <>
                                     <NewChapter
                                         title = {key}
+                                        id = {courseStructure['Chapters'][key].id}
                                         callback = {updateChapter} 
                                         callback2 = {() => {setChartTitleOpen(false)}}
                                         add_lecture_callback = {addNewLecture}

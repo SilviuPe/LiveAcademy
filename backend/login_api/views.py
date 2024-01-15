@@ -121,7 +121,8 @@ class RequestCourse(APIView):
                     courseJSON['Chapters'][chapter.title] = {
                         "lectures" : {
 
-                        }
+                        },
+                        "id" : chapter.id
                     }
                     for lecture in Lecture.objects.filter(chapter=chapter):
                         courseJSON['Chapters'][chapter.title]['lectures'][lecture.title] = {

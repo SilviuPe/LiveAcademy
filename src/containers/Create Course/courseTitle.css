@@ -49,3 +49,6 @@
 
     transition: opacity 0.5s;
 }
+.LiveAcademy_content-course_title .unsaved {
+    color: gray;
+}

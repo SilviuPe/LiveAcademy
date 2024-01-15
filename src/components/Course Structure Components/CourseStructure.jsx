@@ -5,11 +5,11 @@ import add from '../../assets/add.png';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export const NewChapter = ({title,callback, callback2, delete_callback,add_lecture_callback,lectures,updateLectureCallback, delete_lecture_callback}) => {
+export const NewChapter = ({title, id, callback, callback2, delete_callback,add_lecture_callback,lectures,updateLectureCallback, delete_lecture_callback}) => {
     const [editChapter, setEditChapter] = useState(false);
     const [lectureTitleOpen, setLectureTitleOpen] = useState(false);
     return (
-        <div className='LiveAcademy_course_chapter'>
+        <div className={`LiveAcademy_course_chapter`}>
             <div className='Chapter'>
                 {
                     editChapter
@@ -20,7 +20,7 @@ export const NewChapter = ({title,callback, callback2, delete_callback,add_lectu
                             onKeyDown={(event)=>{
                                 if (event.key === "Escape") 
                                     setEditChapter(!editChapter);
-                                if(event.key == "Enter") {
+                                if(event.key === "Enter") {
                                     let value = event.target.value;
                                     if(value.length > 0) {
                                         setEditChapter(!editChapter)
@@ -34,7 +34,8 @@ export const NewChapter = ({title,callback, callback2, delete_callback,add_lectu
                         }}/>
                     </>
                     : <>
-                        <h1 
+                        <h1
+                        className= {`${ id === undefined ? 'unsaved_title' : ''}`} 
                         title = 'Edit Chapter Title'
                         onClick={() => {
                             callback2();
@@ -83,8 +84,11 @@ export const NewChapter = ({title,callback, callback2, delete_callback,add_lectu
 
 export const NewLecture = ({chapter,title,callback, delete_callback,lectureID}) => {
     const [editLecture, setEditLecture] = useState(false);
+
+
     const navigate = useNavigate();
-    return <div className='LiveAcademy_course_lecture'>
+    console.log("RE RENDER", title,  lectureID == undefined)
+    return <div className={`LiveAcademy_course_lecture`}>
     {
         editLecture 
         ? <>
@@ -94,10 +98,9 @@ export const NewLecture = ({chapter,title,callback, delete_callback,lectureID}) 
                 onKeyDown={(event)=> {
                     if (event.key === "Escape") 
                         setEditLecture(!editLecture)
-                    if(event.key == "Enter") {
+                    if(event.key === "Enter") {
                         let value = event.target.value;
                         if(value.length > 0) {
-                            console.log(chapter,title,value)
                             setEditLecture(!editLecture);
                             return callback(chapter,title,value);
                         }
@@ -110,13 +113,16 @@ export const NewLecture = ({chapter,title,callback, delete_callback,lectureID}) 
                 />
         </>
         : <>
-            <h1 onClick={() => {
+            <h1 
+            className= {`${lectureID === undefined ? 'unsaved_lecture' : ''}`}
+            onClick={() => {
                 setEditLecture(!editLecture);
             }}>{title}</h1>
 
-            <div className='edit_img_holder'>
+            <div className={`edit_img_holder ${lectureID == undefined ? 'unsaved_lecture' : ''}`}>
                 <img src = {edit} onClick={() => {
-                    navigate(`/createContent/${lectureID}`);
+                    if (lectureID != undefined)
+                        navigate(`/createContent/${lectureID}`);
                 }}/>
             </div>
         </>
