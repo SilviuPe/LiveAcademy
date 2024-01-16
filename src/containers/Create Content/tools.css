@@ -1,0 +1,25 @@
+.LiveAcademy_content_tools {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+
+    position:relative;
+
+    top: -2.3rem;
+    z-index: 1;
+}
+
+.LiveAcademy_tool_button {
+    border: 1px solid white;
+    display: flex;
+}
+.LiveAcademy_tool_button:hover {
+    background-color: var(--color-accent-low);
+
+    transition: background-color 0.2s;
+}
+.LiveAcademy_tool_button img {
+    width: 16px;
+    padding: 1rem 1.5rem;
+}

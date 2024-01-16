@@ -1,0 +1,24 @@
+
+.LiveAcademy_create_content-container {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+}
+
+.LiveAcademy_content_editor {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.LiveAcademy_objects_list {
+    display: flex;
+    width: 15%;
+    max-height:100%;
+}
+.LiveAcademy_content_frame {
+    display: flex;
+    width: 85%;
+    max-height:100%;
+    background-color: white;
+}
