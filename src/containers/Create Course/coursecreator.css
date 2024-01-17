@@ -118,10 +118,13 @@
     font-family: var(--font-family);
     font-size: 14px;
 }
-.unsaved h1 {
+.LiveAcademy_course_chapter .unsaved_title {
     color: gray;
 }
-.unsaved img {
+.LiveAcademy_course_lecture .unsaved_lecture {
+    color: gray;
+}
+.unsaved_lecture img {
     visibility: hidden;
 }
 .LiveAcademy_course_lecture img {
