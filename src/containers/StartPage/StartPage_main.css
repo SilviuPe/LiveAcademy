@@ -9,7 +9,7 @@
     flex-direction: column;
     justify-content: center;
 
-    transition: opacity 3s, transform 1s;
+    transition: opacity 3s, transform 2s;
 }
 
 /* First description of the project */
