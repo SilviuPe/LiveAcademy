@@ -231,18 +231,21 @@ const CourseCreator = () => {
             body : JSON.stringify(courseStructure)
         }
         fetch('http://localhost:3001/create_course', json_data).then(response => {
-            if (response.status === 201) {
-                console.log("SAVED")
                 return response.json()
-            }
         })
         .then(data => {
-            setCourseStructure({
+            if (data.CourseID) {
+                setCourseStructure({
                 ...courseStructure,
                 CourseID : data.CourseID
             })
             requestCourse();
             setTitleSaved(true);
+            }
+            
+            else {
+                console.log(data.Error)
+            }
         })
     }
 
