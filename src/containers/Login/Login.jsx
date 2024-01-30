@@ -6,11 +6,17 @@ import user from '../../assets/user.png';
 import passwd from '../../assets/padlock.png';
 import { useNavigate } from 'react-router-dom';
 
-const LoginField = ({icon,text,type,callback}) => {
+const LoginField = ({icon,text,type,callback, key_pressed_callback}) => {
     return (
         <li className='LiveAcademy_field'>
             <img src = {icon}/>
-            <input type = {type} placeholder={text} onChange = {callback}/>
+            <input type = {type} placeholder={text} onChange = {callback} onKeyPress = {(event) => {
+              if (event.key === "Enter") {
+                if (key_pressed_callback !== undefined) {
+                  key_pressed_callback();
+                }
+              }
+            }}/>
         </li>
     );
 }
@@ -65,14 +71,24 @@ const Login = () => {
         <div className='LiveAcademy_login_content'>
              <h1>Login</h1>
              <ul className='LiveAcademy_login_fields'>
-                <LoginField icon = {user} text = "Username" type = "text" callback = {(event) => {setCredentials({
-                  username : event.target.value,
-                  password : credentials['password']
+                <LoginField 
+                  icon = {user} 
+                  text = "Username" 
+                  type = "text" 
+                  callback = {(event) => {setCredentials({
+                    username : event.target.value,
+                    password : credentials['password']
                 })}}/>
-                <LoginField icon = {passwd} text = "Password" type = "password" callback = {(event) => {setCredentials({
-                  username : credentials['username'],
-                  password : event.target.value
-                })}}/>
+                <LoginField 
+                  icon = {passwd} 
+                  text = "Password" 
+                  type = "password" 
+                  callback = {(event) => {setCredentials({
+                    username : credentials['username'],
+                    password : event.target.value
+                  })}}
+                  key_pressed_callback={SendLoginRequest}
+                />
              </ul>
              <button onClick = {SendLoginRequest}>Submit</button>
 

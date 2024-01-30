@@ -9,11 +9,17 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const RegisterField = ({icon,text,type,callback}) => {
+const RegisterField = ({icon,text,type,callback, key_pressed_callback}) => {
     return (
         <li className='LiveAcademy_field'>
             <img src = {icon}/>
-            <input type = {type} placeholder={text} onChange = {callback}/>
+            <input type = {type} placeholder={text} onChange = {callback} onkeyPress = {(event) => {
+              if(event.key === "Enter") {
+                if(key_pressed_callback !== undefined) {
+                  key_pressed_callback();
+                }
+              } 
+            }}/>
         </li>
     );
 }
@@ -75,20 +81,30 @@ const Register = () => {
                     'password' : credentials['password']
                   })
                 }}/>
-                <RegisterField icon = {mail} text = "Email" type = "mail" callback = {(event) => {
+                <RegisterField 
+                icon = {mail} 
+                text = "Email" 
+                type = "mail" 
+                callback = {(event) => {
                   setCredentials({
                     'username':credentials['username'],
                     'email': event.target.value,
                     'password' : credentials['password']
                   })
                 }}/>
-                <RegisterField icon = {passwd} text = "Password" type = "password" callback = {(event) => {
+                <RegisterField 
+                  icon = {passwd} 
+                  text = "Password" 
+                  type = "password" 
+                  callback = {(event) => {
                   setCredentials({
                     'username':credentials['username'],
                     'email': credentials['email'],
                     'password' : event.target.value
                   })
-                }}/>
+                  }}
+                  key_pressed_callback={ SendRegisterRequest }
+                />
              </ul>
              <button onClick={SendRegisterRequest}>Submit</button>
 
